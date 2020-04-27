@@ -1,0 +1,57 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add socket.io
+
+PATH: 
+  C:\Users\User\bin;C:\Users\User\vendor\bin;C:\Users\User\vendor\conemu-maximus5\ConEmu\Scripts;C:\Users\User\vendor\conemu-maximus5;C:\Users\User\vendor\conemu-maximus5\ConEmu;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Program Files (x86)\Yarn\bin\;C:\Program Files\MongoDB\Server\4.2\bin;C:\Users\User\AppData\Local\Microsoft\WindowsApps;C:\Users\User\AppData\Roaming\npm;C:\Users\User\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\User\AppData\Local\Yarn\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\User;C:\Users\User\vendor\git-for-windows\cmd;C:\Users\User\vendor\git-for-windows\mingw64\bin;C:\Users\User\vendor\git-for-windows\usr\bin
+
+Yarn version: 
+  1.22.4
+
+Node version: 
+  12.16.2
+
+Platform: 
+  win32 x64
+
+Trace: 
+  Error: getaddrinfo ENOTFOUND registry.yarnpkg.com
+      at GetAddrInfoReqWrap.onlookup [as oncomplete] (dns.js:64:26)
+
+npm manifest: 
+  {
+    "name": "server",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/AmeniMaamouri/DropBox.git"
+    },
+    "author": "Ameni Maamouri",
+    "license": "ISC",
+    "bugs": {
+      "url": "https://github.com/AmeniMaamouri/DropBox/issues"
+    },
+    "homepage": "https://github.com/AmeniMaamouri/DropBox#readme",
+    "devDependencies": {
+      "eslint": "^6.8.0",
+      "eslint-config-airbnb-base": "^14.1.0",
+      "eslint-plugin-import": "^2.20.2"
+    },
+    "dependencies": {
+      "body-parser": "^1.19.0",
+      "cors": "^2.8.5",
+      "express": "^4.17.1",
+      "express-fileupload": "^1.1.7-alpha.3",
+      "mongoose": "^5.9.9"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
