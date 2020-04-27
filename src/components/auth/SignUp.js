@@ -1,13 +1,11 @@
 import React, { useEffect, useRef } from 'react';
-// import useForm from '../../hooks/useForm';
 import { useDispatch, useSelector } from 'react-redux';
-import { register } from '../../store/actions/authActions';
+import { registerAction } from '../../store/actions/authActions';
 import { useHistory, Redirect } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 
 const SignUp = () => {
 
-  // const [values, handleChange] = useForm();
   const message = useSelector(state => state.auth.registerMsg);
   const history = useHistory();
   const dispatch = useDispatch();
@@ -15,10 +13,8 @@ const SignUp = () => {
   const password = useRef({});
   password.current = watch("password", "");
 
-  const onSubmit = (data) => {
-    if (data) {
-      //  dispatch(register(data));
-    }
+  const onSubmit = async (data) => {
+      dispatch(registerAction(data));
   }
 
   useEffect(() => {
@@ -35,7 +31,7 @@ const SignUp = () => {
       {localStorage.getItem('token') ? <Redirect to="/" /> : <div className="limiter">
         <div className="container-login100">
           <div className="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-50">
-            <form onSubmit={handleSubmit(onSubmit)} methode='POST' action='/signup' className="login100-form validate-form">
+            <form onSubmit={e => e.preventDefault()} methode='POST' action='/signup' className="login100-form validate-form">
               <span className="login100-form-title p-b-33">
                 Register
               </span>
@@ -98,7 +94,7 @@ const SignUp = () => {
                 {errors.confirmPassword.message}
               </div>}
               <div className="container-login100-form-btn m-t-20">
-                <button type="submit" className="login100-form-btn btnsend">
+                <button type="submit" onClick={handleSubmit(onSubmit)} className="login100-form-btn btnsend">
                   Sign Up
                 </button>
               </div>

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const register = (user) => {
+export const registerAction = (user) => {
     return (dispatch, getState) => {
         axios.post('http://localhost:4000/signup', user).then((res) => {
             dispatch({type : 'REGISTER', message: res.data.message})
