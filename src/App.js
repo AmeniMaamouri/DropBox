@@ -8,6 +8,7 @@ import {
 import SignIn from './components/auth/SignIn';
 import SignUp from './components/auth/SignUp';
 import NotFound from './components/NotFound';
+import DownloadFile from './components/filesUpload/DownloadFile';
 
 
 function App() {
@@ -16,8 +17,11 @@ function App() {
     <div className="all">
       <BrowserRouter>
         <Switch>
-          <Route exact path={["", "/download/:id"]}>
+          <Route exact path="/">
             <UploadInterface />
+          </Route>
+          <Route exact path="/download/:id">
+            <DownloadFile />
           </Route>
           <Route exact path='/signin'>
             <SignIn />

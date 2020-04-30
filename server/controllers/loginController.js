@@ -9,7 +9,8 @@ module.exports = (req, res) => {
                 if (same) {
 
                     var payload = {
-                        userId: user._id
+                        userId: user._id,
+                        role: user.role
                     }
 
                     res.json({

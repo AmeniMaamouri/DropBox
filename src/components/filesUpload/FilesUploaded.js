@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { getFilesUploaded, downloadFile, deleteFile, editFiles, addFiles } from '../../store/actions/fileAction';
+import React, { useEffect, useState } from 'react';
+import { getFilesUploaded, deleteFile, editFiles, addFiles } from '../../store/actions/fileAction';
 import { useDispatch, useSelector } from 'react-redux';
 import io from 'socket.io-client';
 import { useHistory } from "react-router-dom";
@@ -13,6 +13,7 @@ const FilesUploaded = () => {
   let socket = io('http://localhost:4000')
   const dispatch = useDispatch();
   const FilesUploaded = useSelector(state => state.file.filesUploaded)
+ 
 
 
   useEffect(() => {
@@ -24,7 +25,7 @@ const FilesUploaded = () => {
       }
       dispatch(getFilesUploaded(decoded.userId))
     });
-    dispatch(downloadFile(history.location.pathname.split('/')[2]))
+    
   }, [dispatch, history])
 
 
@@ -41,6 +42,7 @@ const FilesUploaded = () => {
     }))
     dispatch(editFiles(files))
   }
+
 
   return (
     <div className="file-upload-bar">
@@ -61,7 +63,7 @@ const FilesUploaded = () => {
                   <div className="col-*-10 filenameList">
                     <span className="filename"><i>File Name:</i><b>{file.fileName}</b></span>
                     <span className="filesize"><i>File Size:</i><b>{file.fileSize}</b></span>
-                    <a href={"/download/" + file._id} className="copy-link"><b>Download</b></a>
+                    <a href={`/download/${file._id}`} className="copy-link"><b>Download</b></a>
                   </div>
                 </li>
               )

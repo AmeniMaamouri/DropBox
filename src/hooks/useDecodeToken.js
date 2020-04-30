@@ -4,15 +4,15 @@ import jwt from 'jsonwebtoken'
 
 const useDecodeToken = () => {
 
-    const [userId, setUserId] = useState('')
+    const [user, setUser] = useState({})
 
     useEffect(()=> {
         var token =  localStorage.getItem('token');
         const tokenPayload = jwt.decode(token);
-        setUserId(tokenPayload.userId)
+        setUser({userId: tokenPayload.userId, role: tokenPayload.role})
       },[])
 
-      return [userId]
+      return [user]
 
 }
 

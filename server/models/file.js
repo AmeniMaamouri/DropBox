@@ -6,6 +6,10 @@ const fileSchema = new Schema({
     mimeType: String,
     fileSize: String,
     userId: String,
+    downloadNumber: {
+        type: Number,
+        default: 0
+    },
     createdAt: {
         type: Date,
         default: Date.now

@@ -3924,3 +3924,9 @@ input.input100 {
 .invalid-feedback{
   font-weight: bold;
 }
+.premiumMsg {
+  margin-bottom: 30px !important;
+  font-size: 25px;
+  color: red;
+ font-weight: bold;
+}

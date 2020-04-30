@@ -4,7 +4,7 @@ const index = require('../index');
 
 module.exports = (req, res) => {
 
-   
+   var user = JSON.parse(req.body.user)
 
     function formatBytes(a,b=2){if(0===a)return"0 Bytes";const c=0>b?0:b,d=Math.floor(Math.log(a)/Math.log(1024));return parseFloat((a/Math.pow(1024,d)).toFixed(c))+" "+["Bytes","KB","MB","GB","TB","PB","EB","ZB","YB"][d]}
 
@@ -22,7 +22,7 @@ module.exports = (req, res) => {
                         fileName,
                         fileSize: formatBytes(file.size),
                         mimeType: file.mimetype,
-                        userId: req.body.userId
+                        userId: user.userId
         
                     }).save((err,data) => {
         
