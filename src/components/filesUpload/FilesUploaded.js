@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getFilesUploaded, deleteFile, editFiles, addFiles } from '../../store/actions/fileAction';
+import { getFilesUploaded, deleteFile, editFiles, addFiles, addToken } from '../../store/actions/fileAction';
 import { useDispatch, useSelector } from 'react-redux';
 import io from 'socket.io-client';
 import { useHistory } from "react-router-dom";
@@ -13,7 +13,7 @@ const FilesUploaded = () => {
   let socket = io('http://localhost:4000')
   const dispatch = useDispatch();
   const FilesUploaded = useSelector(state => state.file.filesUploaded)
- 
+  const token = useSelector(state => state.file.token)
 
 
   useEffect(() => {
@@ -24,6 +24,7 @@ const FilesUploaded = () => {
         window.location.reload();
       }
       dispatch(getFilesUploaded(decoded.userId))
+      dispatch(addToken(decoded))
     });
     
   }, [dispatch, history])
@@ -35,10 +36,10 @@ const FilesUploaded = () => {
     })
   },[dispatch])
 
-  const handleClick = (id) => {
-    dispatch(deleteFile(id))
+  const handleClick = (fileId,userId) => {
+    dispatch(deleteFile(fileId,userId))
     const files = _.filter(FilesUploaded, (file => {
-      return file._id !== id
+      return file._id !== fileId
     }))
     dispatch(editFiles(files))
   }
@@ -57,7 +58,7 @@ const FilesUploaded = () => {
                 <li key={file._id}>
                   <div className="col-*-2 trashIcon">
                     <div className="trashIcon" >
-                      <FaRegTrashAlt value={file._id} onClick={() => handleClick(file._id)} className="trash" />
+                      <FaRegTrashAlt value={file._id} onClick={() => handleClick(file._id,token.userId)} className="trash" />
                     </div>
                   </div>
                   <div className="col-*-10 filenameList">

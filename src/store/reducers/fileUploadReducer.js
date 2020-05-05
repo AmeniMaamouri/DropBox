@@ -29,7 +29,7 @@ const fileUploadReducer = (state = initState, action) => {
         case 'DOWNLOAD_FILES_ERROR':
             return {
                 ...state,
-                errDownload: 'You have reached your limit, please try again after 1 min'
+                errDownload: 'You have reached your limit of download files, please try again after 1 min'
 
             }
 
@@ -56,6 +56,18 @@ const fileUploadReducer = (state = initState, action) => {
             return {
                 ...state,
                 filesUploaded: [action.file, ...state.filesUploaded]
+            }
+
+            case 'ADD_TOKEN':
+            return {
+                ...state,
+                token: action.token
+            }
+
+            case "EDIT_ERR_MSG": 
+            return{
+                ...state,
+                notFoundFile: action.msg
             }
 
         default:

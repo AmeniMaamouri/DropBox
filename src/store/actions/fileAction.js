@@ -22,13 +22,14 @@ export const getFilesUploaded = (userId) => {
     }
 }
 
-export const downloadFile = (url, role) => {
+export const downloadFile = (url, role, userId) => {
     
     return (dispatch, getState) => {
          axios({
          url: `http://localhost:4000/download/${url}`, //your url
          params:{
              role,
+             userId
          },
          responseType: 'blob',
         })
@@ -55,9 +56,11 @@ export const downloadFile = (url, role) => {
 }
 
 
-export const deleteFile = (id) => {
+export const deleteFile = (fileId,userId) => {
     return (dispatch, getState) => {
-        axios.delete('http://localhost:4000/', { params: id }).then(res => {
+        axios.delete('http://localhost:4000/', { params: {
+            fileId, userId
+        } }).then(res => {
             dispatch({ type: 'DELETE', msg: res.data.message })
         }).catch(err => {
             dispatch({ type: 'DELETE_FIALED', err })
@@ -81,4 +84,20 @@ export const addFiles = (file) => {
         file
     }
 
+}
+
+export const addToken = (token) => {
+
+    return {
+        type: 'ADD_TOKEN',
+        token
+    }
+
+}
+export const editErrMsg = (msg) => {
+    console.log(msg)
+    // return{
+    //     type: "EDIT_ERR_MSG",
+    //     msg
+    // }
 }

@@ -10,7 +10,7 @@ const DownloadFile = () => {
 
     const dispatch = useDispatch();
     let history = useHistory();
-    const [decoded, setDecoded] = useState('');
+
 
     useEffect( () => {
         var token = localStorage.getItem('token');
@@ -18,10 +18,10 @@ const DownloadFile = () => {
           if (err) { // Manage different errors here (Expired, untrusted...)
             localStorage.clear();
             window.location.reload();
-            setDecoded(decoded.role)
+           
           }
-          dispatch(downloadFile(history.location.pathname.split('/')[2], decoded.role))
-          history.push('/')
+          dispatch(downloadFile(history.location.pathname.split('/')[2], decoded.role, decoded.userId))
+         
         });
         
       },[localStorage.getItem('token')])

@@ -1,8 +1,9 @@
 const File = require('../models/file');
 const index = require('../index');
+const fs = require('fs');
 
 
-module.exports = (req, res) => {
+module.exports = async (req, res) => {
 
    var user = JSON.parse(req.body.user)
 
@@ -12,8 +13,12 @@ module.exports = (req, res) => {
        
             var file = req.files.file
             var fileName = file.name
+
+            if (!fs.existsSync(`./uploads/${user.userId}`)){
+               fs.mkdirSync(`./uploads/${user.userId}`);
+            }
         
-            file.mv('./uploads/' + fileName, (err) => {
+            file.mv(`./uploads/${user.userId}/${fileName}`, (err) => {
                 if (err) {
                     console.log(err)
                 } else {
